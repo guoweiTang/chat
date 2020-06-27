@@ -9,7 +9,7 @@ export const recordModuleName = ({ commit, state }, name) => {
         store.unregisterModule(state.moduleName);
     }
 
-    commit(types.RECORD_CURRENT_MODULE_NAME, {
+    commit(types.RECORD_MODULE_NAME, {
         name
     });
 };

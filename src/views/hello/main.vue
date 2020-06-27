@@ -2,55 +2,52 @@
   <div class="container">
     <canvas class="clock">Your browser does not support the canvas element.</canvas>
     <p class="developing">敬请期待……</p>
+    <pre>
+      msg: {{msg}}
+      helloMsg: {{helloMsg}}
+      liveCount: {{liveCount}}
+    </pre>
   </div>
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapGetters, mapActions } from 'vuex';
 
-import rootStore from "../../store";
-import moduleStore from "./store";
-import * as consts from "./constants";
+import rootStore from '../../store';
+import moduleStore from './store';
+const moduleScope = '/hello';
 
 export default {
-  name: "hello",
-  data() {
-    return {
-      msg: "Welcome to Your Vue.js App"
-    };
-  },
+  name: 'hello',
   computed: {
-    ...mapState(consts.MODULE_NAME, ["msg"])
+    ...mapGetters(['msg']),
+    ...mapGetters(moduleScope, ['helloMsg']),
+    ...mapState(moduleScope, ['liveCount']),
   },
   methods: {
-    ...mapActions(consts.MODULE_NAME, ["sayHello"]),
-    /**
-     * 记录当前路由对应的 module name, 并卸载上一路由对应的 module store
-     *
-     * !!!请勿修改!!!
-     * !!!请勿修改!!!
-     * !!!请勿修改!!!
-     */
-    ...mapActions(["recordModuleName"])
+    ...mapActions(moduleScope, ['add']),
   },
   /**
-   * 无需修改，载入路由对应的 module store 对象
-   *
-   * !!!请勿修改!!!
-   * !!!请勿修改!!!
-   * !!!请勿修改!!!
+   * 在渲染该组件的对应路由被 confirm 前调用
+   * ！！！无需修改！！！
+   * ！！！无需修改！！！
+   * ！！！无需修改！！！
    */
   beforeRouteEnter(to, from, next) {
-    rootStore.registerModule(consts.MODULE_NAME, moduleStore);
-
+    // 载入路由对应的 module store 对象
+    rootStore.registerModule(moduleScope, moduleStore);
     next(vm => {
-      vm.recordModuleName(consts.MODULE_NAME);
+      vm.$store.dispatch('recordModuleName', moduleScope)
+
+      // 开发代码
+      vm.add(1);
     });
   },
+  
 };
 </script>
 
-<!-- 添加"scoped"属性后样式仅对本组件可用  -->
+<!-- 添加'scoped'属性后样式仅对本组件可用  -->
 <style scoped>
 h3 {
   margin: 40px 0 0;

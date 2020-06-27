@@ -1,1 +1,1 @@
-export const helloMsg = state => state.msg;
+export const helloMsg = (state, getters, rootState, rootGetters) => 'Hello ' + rootGetters.msg;

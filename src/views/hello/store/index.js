@@ -6,7 +6,7 @@ import * as getters from './getters';
 export default {
     namespaced: true,
     state: {
-        msg: ''
+        liveCount: 0
     },
     actions,
     mutations,

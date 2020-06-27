@@ -1,3 +1,3 @@
-export const LeftNavWidth = state => {
-    return 0;
+export const msg = state => {
+    return 'coming ' + state.moduleName
 };
