@@ -8,6 +8,7 @@
   </div>
 </template>
 
+<style lang="css" src="./assets/css/base.css"></style>
 <script>
 import AppHeader from "./components/header/main.vue";
 import AppFooter from "./components/footer/main.vue";
@@ -30,6 +31,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>

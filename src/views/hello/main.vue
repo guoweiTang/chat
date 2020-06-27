@@ -11,21 +11,22 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions } from 'vuex';
+import { mapState, mapGetters, mapActions } from "vuex";
 
-import rootStore from '../../store';
-import moduleStore from './store';
-const moduleScope = '/hello';
+import rootStore from "../../store";
+import moduleStore from "./store";
+const moduleScope = "/hello";
+let timer = null;
 
 export default {
-  name: 'hello',
+  name: "hello",
   computed: {
-    ...mapGetters(['msg']),
-    ...mapGetters(moduleScope, ['helloMsg']),
-    ...mapState(moduleScope, ['liveCount']),
+    ...mapGetters(["msg"]),
+    ...mapGetters(moduleScope, ["helloMsg"]),
+    ...mapState(moduleScope, ["liveCount"])
   },
   methods: {
-    ...mapActions(moduleScope, ['add']),
+    ...mapActions(moduleScope, ["add"])
   },
   /**
    * 在渲染该组件的对应路由被 confirm 前调用
@@ -37,30 +38,122 @@ export default {
     // 载入路由对应的 module store 对象
     rootStore.registerModule(moduleScope, moduleStore);
     next(vm => {
-      vm.$store.dispatch('recordModuleName', moduleScope)
+      vm.$store.dispatch("recordModuleName", moduleScope);
 
       // 开发代码
       vm.add(1);
+
+      let lock = vm.$el.getElementsByClassName('clock')[0];
+      let ctx = lock.getContext('2d');
+      let canvasW = 60;
+      lock.width = canvasW * 2;
+      lock.height = canvasW * 2;
+      setDirective(ctx, canvasW);
     });
-  },
-  
+  }
 };
+// 绘图
+function setDirective(ctx, w) {
+  ctx.clearRect(0, 0, 2 * w, 2 * w);
+  let t = new Date();
+  // 表盘
+  let lineWidth = 6;
+  let r = w - lineWidth;
+  ctx.beginPath();
+  ctx.lineWidth = lineWidth;
+  ctx.arc(w, w, r, 0, 2 * Math.PI);
+  let grd = ctx.createLinearGradient(w, 0, w, 2 * w);
+  grd.addColorStop(0, "#d2e5ed");
+  grd.addColorStop(1, "#767574");
+  ctx.strokeStyle = grd;
+  ctx.stroke();
+
+  // 时间刻度
+  ctx.lineWidth = lineWidth / 2;
+  for (let i = 1; i <= 12; i++) {
+    ctx.beginPath();
+    ctx.moveTo(w, w);
+    ctx.lineTo(
+      w + r * Math.sin((Math.PI / 6) * i),
+      w - r * Math.cos((Math.PI / 6) * i)
+    );
+    ctx.stroke();
+  }
+  ctx.beginPath();
+  ctx.arc(w, w, r - r / 5, 0, 2 * Math.PI);
+  ctx.fillStyle = "#fff";
+  ctx.fill();
+
+  // 时针
+  let timeArr = t.toLocaleTimeString().match(/\d+/g);
+  let scaleH =
+    (Number(timeArr[0]) * 3600 + Number(timeArr[1] * 60) + Number(timeArr[2])) /
+    (12 * 3600);
+  ctx.beginPath();
+  ctx.moveTo(w, w);
+  ctx.lineTo(
+    w + (r - r / 2) * Math.sin(scaleH * 2 * Math.PI),
+    w - (r - r / 2) * Math.cos(scaleH * 2 * Math.PI)
+  );
+  ctx.lineCap = "round";
+  ctx.lineWidth = 6;
+  ctx.strokeStyle = "#ff8d00";
+  ctx.stroke();
+
+  // 分针
+  ctx.beginPath();
+  ctx.moveTo(w, w);
+  ctx.lineTo(
+    w + (r - r / 3) * Math.sin((t.getMinutes() / 60) * 2 * Math.PI),
+    w - (r - r / 3) * Math.cos((t.getMinutes() / 60) * 2 * Math.PI)
+  );
+  ctx.lineWidth = 4;
+  ctx.strokeStyle = "#00b38a";
+  ctx.stroke();
+
+  // 秒针
+  ctx.beginPath();
+  ctx.moveTo(w, w);
+  ctx.lineTo(
+    w + (r - r / 4) * Math.sin((t.getSeconds() / 60) * 2 * Math.PI),
+    w - (r - r / 4) * Math.cos((t.getSeconds() / 60) * 2 * Math.PI)
+  );
+  ctx.lineCap = "round";
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = "#e1251b";
+  ctx.stroke();
+
+  // 表盘中心
+  ctx.beginPath();
+  ctx.arc(w, w, r / 15, 0, 2 * Math.PI);
+  ctx.fillStyle = "#000";
+  ctx.fill();
+
+  // 回调自身
+  clearTimeout(timer);
+  timer = setTimeout(setDirective, 1000, ctx, w);
+}
 </script>
 
 <!-- 添加'scoped'属性后样式仅对本组件可用  -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.container{
+  border: 1px solid #dedede;
+  box-sizing: border-box;
+  width: 9.38rem;
+  background-color: #fff;
+  margin: 0 auto;
+  padding: .63rem 0;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+.clock {
+  display: block;
+  margin: 0 auto;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+p.developing {
+  margin-top: 18px;
+  text-align: center;
+  font-size: .44rem;
+  color: #666;
+  font-weight: bold;
 }
 </style>

@@ -12,3 +12,15 @@ export default {
   name: "appFooter"
 };
 </script>
+<style scoped>
+.page_footer{
+  margin-top: .31rem;
+  text-align: center;
+  color: #999;
+  font-size: .31rem;
+}
+.page_footer a{
+  font-size: .31rem;
+  color: #999;
+}
+</style>>
