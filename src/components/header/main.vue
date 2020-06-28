@@ -25,35 +25,51 @@ export default {
   name: "appHeader"
 };
 </script>
-<style scoped>
-.page_header{
-    margin-bottom: .31rem;
-    padding-bottom: .44rem;
+<style lang="less" scoped>
+.page_header {
+  margin-bottom: 0.31rem;
+  padding-bottom: 0.44rem;
+  background: url(./img/bg.png) repeat-x;
+  background-size: 0.03rem 1.25rem;
 }
-nav ul{
+nav {
+  ul {
     width: 9.38rem;
     margin: 0 auto;
-}
-nav li{
+  }
+  li {
     float: left;
-    margin-left: .16rem;
-    font-size: .44rem;
+    margin-left: 0.16rem;
+    font-size: 14px;
     font-weight: bold;
-}
-nav li:first-child{
-    margin-left: 0;
-}
-nav a{
-  color: #f1f1f1;
-}
-.login_register{
-    line-height: .44rem;
-    text-align: right;
-    padding-right: .63rem;
-}
-.login_register a{
-    margin: 0 .16rem;
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+  a {
     color: #f1f1f1;
-    font-size: .31rem;
+  }
+} 
+.login_register {
+  line-height: 0.44rem;
+  text-align: right;
+  padding-right: 0.63rem;
+  a {
+    margin: 0 0.16rem;
+    color: #f1f1f1;
+    font-size: 12px;
+  }
+}
+@media screen and (min-width: 400px) {
+  .login_register {
+    a {
+      font-size: 14px;
+    }
+  }
+  nav {
+    li {
+      font-size: 18px;
+    }
+  }
 }
 </style>

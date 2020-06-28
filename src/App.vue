@@ -15,11 +15,11 @@ import AppFooter from "./components/footer/main.vue";
 import store from "./store";
 
 export default {
-  name: "App",
+  name: 'App',
   store,
   components: {
-    "app-header": AppHeader,
-    "app-footer": AppFooter
+    'app-header': AppHeader,
+    'app-footer': AppFooter
   },
 };
 </script>

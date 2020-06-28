@@ -12,15 +12,23 @@ export default {
   name: "appFooter"
 };
 </script>
-<style scoped>
+<style lang="less" scoped>
 .page_footer{
   margin-top: .31rem;
   text-align: center;
   color: #999;
-  font-size: .31rem;
+  font-size: 10px;
 }
 .page_footer a{
-  font-size: .31rem;
+  font-size: 10px;
   color: #999;
+}
+@media screen and (min-width: 400px) {
+  .page_footer {
+    font-size: 14px;
+    a {
+      font-size: 14px;
+    }
+  }
 }
 </style>>

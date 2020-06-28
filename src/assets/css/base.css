@@ -17,13 +17,11 @@ html {
 body {
   margin: 0;
   padding: 0;
-  font-size: .44rem;
+  font-size: 12px;
   font-family: "Hiragino Sans GB", "Microsoft Yahei", "SimSun", Arial, "Helvetica Neue", Helvetica;
   color: #333;
   word-wrap: break-word;
   -webkit-font-smoothing: antialiased;
-  background: url(../img/body-bg.png) repeat-x;
-  background-size: .03rem 1.25rem;
 }
 pre {
   font-family: "Hiragino Sans GB", "Microsoft Yahei", "SimSun", Arial, "Helvetica Neue", Helvetica;
