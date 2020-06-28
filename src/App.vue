@@ -8,7 +8,7 @@
   </div>
 </template>
 
-<style lang="css" src="./assets/css/base.css"></style>
+<style lang="less" src="./assets/css/base.less"></style>
 <script>
 import AppHeader from "./components/header/main.vue";
 import AppFooter from "./components/footer/main.vue";
@@ -25,11 +25,18 @@ export default {
 </script>
 
 <style>
+#container{
+  border: 1px solid #dedede;
+  box-sizing: border-box;
+  width: 9.38rem;
+  background-color: #fff;
+  margin: 0 auto;
+  padding: .63rem 0;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
 </style>

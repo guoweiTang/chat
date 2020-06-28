@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="entry">
     <canvas class="clock">Your browser does not support the canvas element.</canvas>
     <p class="developing">敬请期待……</p>
     <pre>
@@ -15,15 +15,15 @@ import { mapState, mapGetters, mapActions } from 'vuex';
 
 import rootStore from '../../store';
 import moduleStore from './store';
-const moduleScope = '/hello';
+const moduleScope = '/index';
 let timer = null;
 
 export default {
-  name: 'hello',
+  name: 'index',
   computed: {
+    ...mapState(moduleScope, ['liveCount', 'canvasWidth']),
     ...mapGetters(['msg']),
     ...mapGetters(moduleScope, ['helloMsg']),
-    ...mapState(moduleScope, ['liveCount', 'canvasWidth'])
   },
   methods: {
     ...mapActions(moduleScope, ['add'])
@@ -42,7 +42,6 @@ export default {
 
       // 开发代码
       vm.add(1);
-
       let lock = vm.$el.getElementsByClassName('clock')[0];
       let ctx = lock.getContext('2d');
       let canvasW = vm.canvasWidth;
@@ -136,14 +135,6 @@ function setDirective(ctx, w) {
 
 <!-- 添加'scoped'属性后样式仅对本组件可用  -->
 <style scoped>
-.container{
-  border: 1px solid #dedede;
-  box-sizing: border-box;
-  width: 9.38rem;
-  background-color: #fff;
-  margin: 0 auto;
-  padding: .63rem 0;
-}
 .clock {
   display: block;
   margin: 0 auto;

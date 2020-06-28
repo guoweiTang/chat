@@ -1,8 +1,8 @@
 <template>
   <header class="page_header">
     <div class="login_register">
-      <a href="/account/profile.html">ice</a>
-      <a href="/auth/logout">退出</a>
+      <a href="/auth/login.html">登录</a>
+      <a href="/auth/register.html">注册</a>
     </div>
     <nav>
       <ul class="clearfix">
@@ -49,7 +49,7 @@ nav {
   a {
     color: #f1f1f1;
   }
-} 
+}
 .login_register {
   line-height: 0.44rem;
   text-align: right;

@@ -190,10 +190,9 @@ ol {
 .table_cell {
   display: table-cell;
 }
-p.error {
+span.error {
   color: #ed7266;
-  margin-top: .06rem;
-  font-size: .25rem;
+  font-size: 12px;
 }
 input[type=text].active,
 textarea.active {
@@ -206,4 +205,13 @@ textarea.active {
 .invalid input[type=text].active,
 .invalid textarea.active {
   border-color: #ed7266 !important;
+}
+.row_full {
+  display: block;
+  & + & {
+    margin-top: 20px;
+  }
+  &:last-of-type {
+    text-align: center;
+  }
 }
