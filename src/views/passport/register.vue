@@ -4,19 +4,19 @@
     <validation-observer ref="form" v-slot="{ handleSubmit }">
       <form @submit.prevent="handleSubmit(submit)" method="POST">
         <label class="row_full">
-          <validation-provider rules="minmax:3,5" v-slot="{ errors }">
+          <validation-provider rules="required|minmax:2,6" v-slot="{ errors }">
             <input v-model="formData.user" type="text" name="用户名" placeholder="请输入用户名" />
             <span class="error">{{ errors[0] }}</span>
           </validation-provider>
         </label>
         <label class="row_full">
-          <validation-provider rules="min:6" v-slot="{ errors }">
+          <validation-provider rules="required|min:6" v-slot="{ errors }" vid="密码">
             <input v-model="formData.password" type="password" name="密码" placeholder="请输入密码" />
             <span class="error">{{ errors[0] }}</span>
           </validation-provider>
         </label>
         <label class="row_full">
-          <validation-provider rules="min:6" v-slot="{ errors }">
+          <validation-provider rules="required|min:6|confirmed:密码" v-slot="{ errors }">
             <input v-model="formData.repassword" type="password" name="确认密码" placeholder="请确认密码" />
             <span class="error">{{ errors[0] }}</span>
           </validation-provider>
@@ -49,9 +49,6 @@ export default {
       errMsg: ""
     };
   },
-  computed: {
-    // ...mapState(moduleScope, ['liveCount', 'canvasWidth'])
-  },
   methods: {
     submit() {
       let _this = this;
@@ -61,9 +58,9 @@ export default {
         }
         axios
           .post("/auth/register.json", {
-            ..._this.formData,
+            ..._this.formData
           })
-          .then(function(data) {
+          .then(function({ data }) {
             if (data.status === 1) {
               _this.errMsg = "";
               location.href = data.result.url;

@@ -1,3 +1,38 @@
+const fs = require('fs');
+const path = require('path');
+const { baseDir, defaultFileName, dirs } = require('./mock.config.js');
+
+/**
+ * @param {any} {url, fileName = 'main.json' } 
+ * @returns 获取实际存储mock数据的文件路径
+ */
+function getLastUrl ({url, fileName = defaultFileName }) {
+  return path.extname(url) ? url : url.replace(path.basename(url), fileName);
+}
+/**
+ * 创建mock文件
+ * 
+ * ！！！无需修改！！！
+ * ！！！无需修改！！！
+ * ！！！无需修改！！！
+ */
+for (const dir of dirs) {
+  console.log('\n\n\nHello!' + getLastUrl(dir))
+  let fileUrl = path.join(baseDir, getLastUrl(dir));
+  try {
+    fs.statSync(fileUrl);
+  } catch (e) {
+    // 目录/文件不存在
+    if (e.code === 'ENOENT') {
+      fs.mkdirSync(path.dirname(fileUrl), { recursive: true });
+      console.log('\n\n\nOK!' + fileUrl)
+      fs.writeFileSync(fileUrl, '{\n\t"status": 1,\n\t"message": "success",\n\t"result": {\n\t\t\n\t}\n}\n');
+    } else {
+      throw e;
+    }
+  }
+}
+
 module.exports = {
   // 输出文件根路径
   publicPath: process.env.NODE_ENV === 'production'
@@ -54,6 +89,21 @@ module.exports = {
   devServer: {
     // 开发环境代理服务器 http-proxy-middleware
     // proxy: 'http://localhost:8080',
+    before(app) {
+      /** 
+       * 返回本地mock数据
+       * 
+       * ！！！无需修改！！！
+       * ！！！无需修改！！！
+       * ！！！无需修改！！！
+      */
+      for (const dir of dirs) {
+        const resData = require('./' + path.join(baseDir, getLastUrl(dir)));
+        app[dir.type](dir.url, (req, res) => {
+          res.send(resData);
+        })
+      }
+    }
   },
   // PWA插件
   pwa: {},

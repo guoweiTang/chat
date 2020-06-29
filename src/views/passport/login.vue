@@ -62,7 +62,7 @@ export default {
         .post('/auth/login.json', {
           ..._this.formData
         })
-        .then(function(data) {
+        .then(function({data}) {
           if (data.status === 1) {
             _this.errMsg = '';
             location.href = data.result.url;

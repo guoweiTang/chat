@@ -13,7 +13,7 @@
           <a href="/account/profile.html">我的</a>
         </li>
         <li>
-          <a href="/peopleList">用户列表</a>
+          <a href="/peopleList.html">用户列表</a>
         </li>
       </ul>
     </nav>
