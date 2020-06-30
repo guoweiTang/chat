@@ -17,7 +17,6 @@ function getLastUrl ({url, fileName = defaultFileName }) {
  * ！！！无需修改！！！
  */
 for (const dir of dirs) {
-  console.log('\n\n\nHello!' + getLastUrl(dir))
   let fileUrl = path.join(baseDir, getLastUrl(dir));
   try {
     fs.statSync(fileUrl);
@@ -25,7 +24,6 @@ for (const dir of dirs) {
     // 目录/文件不存在
     if (e.code === 'ENOENT') {
       fs.mkdirSync(path.dirname(fileUrl), { recursive: true });
-      console.log('\n\n\nOK!' + fileUrl)
       fs.writeFileSync(fileUrl, '{\n\t"status": 1,\n\t"message": "success",\n\t"result": {\n\t\t\n\t}\n}\n');
     } else {
       throw e;
