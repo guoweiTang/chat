@@ -1,0 +1,322 @@
+#imessage {
+  width: 9.38rem;
+  height: 80%;
+  border: 1px solid #dce0e0;
+  border-radius: 3px;
+  margin: 0 auto;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.08);
+  zoom: 1;
+  .people_list {
+    height: calc(100% - 1.25rem);
+    overflow-y: scroll;
+    .no_msg{
+      margin: 40px 0;
+      text-align: center;
+      a{
+        color: #00b38a;
+      }
+    }
+  }
+  .people_container, 
+  .msg_container,
+  .had_msg,
+  .no_msg {
+    height: 100%;
+  }
+  .people_container {
+    dl {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px dashed #dce0e0;
+      padding: .25rem;
+      cursor: default;
+      &:hover {
+        background-color: #e9eeef;
+        .delete-icon {
+          display: block;
+        }
+      }
+    }
+    dt {
+      width: 1rem;
+      height: 1rem;
+      position: relative;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+    }
+    dd {
+      width: 7rem;
+    }
+    .unread_count {
+      position: absolute;
+      right: -11px;
+      top: -11px;
+      box-sizing: border-box;
+      padding: 0 4px;
+      min-width: 22px;
+      height: 22px;
+      border: 2px solid #fff;
+      border-radius: 11px;
+      color: #fff;
+      background-color: #ff5842;
+      text-align: center;
+      line-height: 18px;
+      font-size: 12px;
+      font-family: Arial;
+    }
+    .more:after {
+      content: "+";
+      position: relative;
+      top: -2px;
+    }
+    .delete-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: none;
+      position: absolute;
+      z-index: 1;
+      right: 10px;
+      top: 8px;
+      text-align: center;
+      background-color: #f00;
+      color: #fff;
+      line-height: 20px;
+      font-size: 12px;
+    }
+    .time {
+      width: 124px;
+      position: absolute;
+      right: 16px;
+      top: 0;
+      color: #999;
+      font-size: 12px;
+      text-align: right;
+    }
+    h4 {
+      width: calc(100% - 140px);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      word-wrap: normal;
+      font-size: 14px;
+      font-weight: bold;
+      line-height: 20px;
+      margin: 0;
+    }
+    .msg {
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      word-wrap: normal;
+      color: #777777;
+      line-height: 26px;
+    }
+    // 表情图片
+    .emoji {
+      width: 18px;
+      vertical-align: middle;
+      margin: 0 2px;
+    }
+  }
+  .msg_container {
+    position: relative;
+    .no_msg {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      width: 100%;
+      font-size: 16px;
+      line-height: 30px;
+      text-align: center;
+    }
+    .time_line {
+      text-align: center;
+      padding-top: 22px;
+      span {
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+    .line {
+      height: 1px;
+      width: 20px;
+      background-color: #dce0e0;
+      margin: 0 6px;
+    }
+    .time {
+      font-size: 12px;
+      color: #999;
+    }
+  }
+  .msg_content {
+    height: -moz-calc(100% - 2.5rem);
+    height: -webkit-calc(100% - 2.5rem);
+    height: calc(100% - 2.5rem);
+    overflow-y: scroll;
+  }
+  .main_content {
+    margin: 0 .4rem .4rem;
+  }
+  .session_bubble {
+    zoom: 1;
+    padding-top: 22px;
+    &:before,
+    &:after {
+      content: "";
+      display: table;
+    }
+    &:after {
+      clear: both;
+    }
+    dt,
+    dd {
+      float: left;
+    }
+    dt {
+      position: relative;
+      width: 12%;
+      padding-top: 12%;
+      img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+      }
+    }
+    dd {
+      position: relative;
+      max-width: calc(88% - 16px);
+      background-color: #e9eeef;
+      margin: 0 0 0 16px;
+      padding: 10px 16px;
+      box-sizing: border-box;
+      border-radius: 6px;
+      line-height: 22px;
+    }
+  }
+  .myself {
+    dt,
+    dd {
+      float: right;
+    }
+    dd {
+      background-color: #3dca99;
+      color: #fff;
+      margin: 0 16px 0 0;
+    }
+    .arrow {
+      left: auto;
+      right: -5px;
+      background-image: url(../../assets/img/arrow2.png);
+    }
+  }
+  .arrow {
+    display: block;
+    position: absolute;
+    left: -5px;
+    top: 7px;
+    width: 5px;
+    height: 11px;
+    background: url(../../assets/img/arrow.png) no-repeat;
+  }
+  .session_form {
+    position: relative;
+    height: 1.25rem;
+    box-sizing: border-box;
+    border-top: 1px solid #dce0e0;
+    text-align: center;
+    background-color: #fff;
+    white-space: nowrap;
+    form {
+      display: inline-block;
+    }
+    .icons {
+      font-size: 24px;
+      vertical-align: middle;
+      cursor: pointer;
+      &:hover {
+        color: #3dca99;
+      }
+    }
+  }
+  .emoji_content {
+    position: absolute;
+    left: 0;
+    bottom: 1.25rem;
+    border: 1px solid #dce0e0;
+    background-color: #fff;
+    padding: .13rem;
+    text-align: left;
+    border-radius: 3px;
+    white-space: normal;
+    .arrow {
+      display: block;
+      position: absolute;
+      left: 10px;
+      bottom: -7px;
+      width: 16px;
+      height: 7px;
+      background: url(../../assets/img/down-tips.png) no-repeat;
+      transform: rotate(180deg);
+    }
+    .emoji {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      padding: 2px;
+      cursor: pointer;
+      &:hover {
+        background-color: #eee;
+      }
+    }
+  }
+  .enter_entry {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: calc(1.25rem - 1px);
+    input[type=submit] {
+      width: 20%;
+      height: 1rem;
+      border-radius: .31rem;
+      background-clip: padding-box;
+      border: none;
+      background-color: #3dca99;
+      color: #fff;
+      font-size: .38rem;
+    }
+  }
+  .text_area {
+    resize: none;
+    vertical-align: middle;
+    box-sizing: border-box;
+    height: 1rem;
+    padding: .2rem .3rem;
+    line-height: .6rem;
+    width: 60%;
+    border: 1px solid #dce0e0;
+    font-size: 12px;
+    overflow: hidden;
+    img {
+      width: 18px;
+      vertical-align: middle;
+    }
+  }
+  
+}
+
+@media screen and (min-width: 400px) {
+  #imessage {
+    .text_area {
+      font-size: 14px;
+    }
+  }
+}
