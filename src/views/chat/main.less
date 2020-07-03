@@ -6,6 +6,14 @@
   margin: 0 auto;
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.08);
   zoom: 1;
+  .category_title {
+    height: 1.25rem;
+    line-height: 1.25rem;
+    border-bottom: 1px solid #dce0e0;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+  }
   .people_list {
     height: calc(100% - 1.25rem);
     overflow-y: scroll;
@@ -17,13 +25,13 @@
       }
     }
   }
-  .people_container, 
-  .msg_container,
+  .session_people, 
+  .session_messages,
   .had_msg,
   .no_msg {
     height: 100%;
   }
-  .people_container {
+  .session_people {
     dl {
       position: relative;
       display: flex;
@@ -124,7 +132,7 @@
       margin: 0 2px;
     }
   }
-  .msg_container {
+  .session_messages {
     position: relative;
     .no_msg {
       position: absolute;

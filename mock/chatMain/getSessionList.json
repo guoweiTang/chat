@@ -2,6 +2,112 @@
 	"status": 1,
 	"message": "success",
 	"result": {
-		
+		"content": [
+			{
+				"lastMsg": {
+					"msgType": 0,
+					"senderId": "62791833",
+					"msgId": "1593575403806",
+					"msgContent": "爱上了",
+					"createTime": "2020-07-01T03:50:03.000Z"
+				},
+				"createTime": "2020-05-28T07:58:53.914Z",
+				"unreadCount": 0,
+				"status": 0,
+				"_id": "5ecf6f3ddb8001a272711d85",
+				"sessionId": "62791833-265426",
+				"sessionIcon": "/upload-sources/i/headPic-1592280480876-59311.jpg",
+				"sessionName": "vee",
+				"__v": 0
+			},
+			{
+				"lastMsg": {
+					"msgType": 0,
+					"senderId": "62791833",
+					"msgId": "1593575192374",
+					"msgContent": "哈哈哈",
+					"createTime": "2020-07-01T03:46:32.000Z"
+				},
+				"createTime": "2020-05-28T07:59:08.501Z",
+				"unreadCount": 0,
+				"status": 0,
+				"_id": "5ecf6f4cdb8001a272711d8b",
+				"sessionId": "62791833-6013896",
+				"sessionIcon": "/upload-sources/i/default-head.jpg",
+				"sessionName": "icey",
+				"__v": 0
+			},
+			{
+				"lastMsg": {
+					"msgType": 0,
+					"senderId": "62791833",
+					"msgId": "1590680118752",
+					"msgContent": "想要地道口语?来百度翻译app体验专业发音测评！",
+					"createTime": "2020-05-28T15:35:18.000Z"
+				},
+				"createTime": "2020-05-28T07:59:03.511Z",
+				"unreadCount": 0,
+				"status": 0,
+				"_id": "5ecf6f47db8001a272711d89",
+				"sessionId": "62791833-56571617",
+				"sessionIcon": "/upload-sources/i/default-head.jpg",
+				"sessionName": "jobs",
+				"__v": 0
+			},
+			{
+				"lastMsg": {
+					"msgType": 0,
+					"senderId": "62791833",
+					"msgId": "1590680090910",
+					"msgContent": "3",
+					"createTime": "2020-05-28T15:34:50.000Z"
+				},
+				"createTime": "2020-05-28T07:58:59.117Z",
+				"unreadCount": 0,
+				"status": 0,
+				"_id": "5ecf6f43db8001a272711d87",
+				"sessionId": "62791833-84709385",
+				"sessionIcon": "/upload-sources/i/default-head.jpg",
+				"sessionName": "friday",
+				"__v": 0
+			},
+			{
+				"lastMsg": {
+					"msgType": 0,
+					"senderId": "62791833",
+					"msgId": "1590680049288",
+					"msgContent": "1",
+					"createTime": "2020-05-28T15:34:09.000Z"
+				},
+				"createTime": "2020-05-28T07:57:21.051Z",
+				"unreadCount": 0,
+				"status": 0,
+				"_id": "5ecf6ee1db8001a272711d83",
+				"sessionId": "62791833-32083137",
+				"sessionIcon": "/upload-sources/i/default-head.jpg",
+				"sessionName": "garry",
+				"__v": 0
+			},
+			{
+				"createTime": "2020-05-28T07:59:13.257Z",
+				"unreadCount": 0,
+				"status": 0,
+				"_id": "5ecf6f51db8001a272711d8d",
+				"sessionId": "62791833-91126334",
+				"sessionIcon": "/upload-sources/i/default-head.jpg",
+				"sessionName": "vic",
+				"__v": 0
+			},
+			{
+				"createTime": "2020-05-28T07:59:18.350Z",
+				"unreadCount": 0,
+				"status": 0,
+				"_id": "5ecf6f56db8001a272711d8f",
+				"sessionId": "62791833-64063638",
+				"sessionIcon": "/upload-sources/i/default-head.jpg",
+				"sessionName": "tang",
+				"__v": 0
+			}
+		]
 	}
 }
