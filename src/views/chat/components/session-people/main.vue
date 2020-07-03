@@ -4,10 +4,11 @@
     <div class="people_list">
       <div v-if="sessionList.length > 0" class="had_msg">
         <dl
-          v-for="item of sessionList"
+          v-for="(item, index) of sessionList"
           :key="item.sessionId"
-          class="dialog"
+          :class="['dialog', {active: activeIndex === index}]"
           :data-session-id="item.sessionId"
+          @click="$emit('check-session', index, item.sessionId)"
         >
           <dt>
             <img width="38" height="38" :src="item.sessionIcon" />
@@ -33,19 +34,19 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
 
-const moduleScope = "/chat";
 export default {
   name: "sessionPeople",
+  props:['activeIndex', 'sessionList'],
   data() {
     return {};
   },
   computed: {
-    ...mapState(moduleScope, ["activeIndex", "sessionList"]),
-    ...mapGetters(moduleScope, ["sessionMap"])
+
   },
-  methods: {},
+  methods: {
+    
+  },
   filters: {
     formatDate: function(date) {
       var firstText = "";

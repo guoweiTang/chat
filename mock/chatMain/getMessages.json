@@ -1,0 +1,58 @@
+{
+	"status": 1,
+	"message": "success",
+	"result": {
+		"content": [
+			{
+				"msgType": 0,
+				"createTime": "2020-05-28T15:34:42.000Z",
+				"_id": "5ecfda12db8001a272711d93",
+				"sessionId": "62791833-265426",
+				"senderId": "62791833",
+				"msgId": "1590680082791",
+				"msgContent": "2",
+				"__v": 0
+			},
+			{
+				"msgType": 0,
+				"createTime": "2020-06-16T03:54:37.000Z",
+				"_id": "5ee8427d05c70516a28ffd8a",
+				"sessionId": "265426-62791833",
+				"senderId": "265426",
+				"msgId": "1592279677189",
+				"msgContent": "一、安装nmap\n\nyum install nmap    #输入y安装\n\n二、使用nmap\n      nmap localhost    #查看主机当前开放的端口\n      nmap -p 1024-65535 localhost    #查看主机端口（1024-65535）中开放的端口\n      nmap -PS 192.168.21.163        #探测目标主机开放的端口\n      nmap -PS22,80,3306  192.168.21.163    #探测所列出的目标主机端口\n      nmap -O 192.168.21.163    #探测目标主机操作系统类型\n      nmap -A 192.168.21.163    #探测目标主机操作系统类型\n      nmap --help  #更多nmap参数请查询帮助信息",
+				"__v": 0
+			},
+			{
+				"msgType": 0,
+				"createTime": "2020-06-16T03:55:16.000Z",
+				"_id": "5ee842a405c70516a28ffd8b",
+				"sessionId": "62791833-265426",
+				"senderId": "62791833",
+				"msgId": "1592279716159",
+				"msgContent": "一、安装nmap\n\nyum install nmap    #输入y安装\n\n二、使用nmap\n      nmap localhost    #查看主机当前开放的端口\n      nmap -p 1024-65535 localhost    #查看主机端口（1024-65535）中开放的端口\n      nmap -PS 192.168.21.163        #探测目标主机开放的端口\n      nmap -PS22,80,3306  192.168.21.163    #探测所列出的目标主机端口\n      nmap -O 192.168.21.163    #探测目标主机操作系统类型\n      nmap -A 192.168.21.163    #探测目标主机操作系统类型\n      nmap --help  #更多nmap参数请查询帮助信息",
+				"__v": 0
+			},
+			{
+				"msgType": 0,
+				"createTime": "2020-07-01T03:49:40.000Z",
+				"_id": "5efc07d451b4ea2e60e3e6b3",
+				"sessionId": "62791833-265426",
+				"senderId": "62791833",
+				"msgId": "1593575380386",
+				"msgContent": "电视",
+				"__v": 0
+			},
+			{
+				"msgType": 0,
+				"createTime": "2020-07-01T03:50:03.000Z",
+				"_id": "5efc07ebea84322ec8f2df7b",
+				"sessionId": "62791833-265426",
+				"senderId": "62791833",
+				"msgId": "1593575403806",
+				"msgContent": "爱上了",
+				"__v": 0
+			}
+		]
+	}
+}

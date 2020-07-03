@@ -29,6 +29,9 @@ module.exports = {
       url: '/chatMain/getSessionList.json',
     }, {
       type: 'get',
+      url: '/chatMain/getMessages.json',
+    }, {
+      type: 'get',
       url: '/example',
     },
   ]

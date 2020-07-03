@@ -1,16 +1,23 @@
 <template>
   <div id="imessage">
-    <session-people />
-    <session-messages />
+    <session-people
+      v-show="activeIndex < 0"
+      :activeIndex="activeIndex"
+      :sessionList="sessionList"
+      @check-session="checkSession"
+     />
+    <session-messages
+      v-show="activeIndex >= 0"
+      :activeIndex="activeIndex"
+      :sessionList="sessionList"
+      :messages="messages"
+      @set-active="setActive"
+     />
   </div>
 </template>
 
 <script>
 import axios from 'axios';
-import { mapState, mapGetters } from 'vuex';
-import rootStore from '../../store';
-import moduleStore from './store';
-const moduleScope = '/chat';
 import sessionPeople from './components/session-people/main.vue';
 import sessionMessages from './components/session-messages/main.vue';
 import Chat from './components/chat/api';
@@ -24,14 +31,48 @@ export default {
   },
   data() {
     return {
-      
+      // 活跃会话
+      activeIndex: -1,
+      // 已建立会话列表
+      sessionList: [],
+      // 所有当前页面已浏览过的消息列表Map{sessionId: []}
+      messagesMap: {},
+      messages: [],
     };
   },
   computed: {
-    ...mapState(moduleScope, ['activeIndex', 'sessionList', 'messagesMap']),
-    ...mapGetters(moduleScope, ['sessionMap']),
+    sessionMap() {
+      let map = new Map();
+      this.sessionList.forEach(function(item, index) {
+        map.set(item.sessionId, index);
+      })
+      return map;
+    }
   },
   methods: {
+    checkSession(index, sessionId) {
+      let _this = this;
+      this.setActive(index);
+      let messages = this.getMessageBySessionId(sessionId);
+      console.log(messages)
+      if (messages) {
+        this.messages = messages;
+        // messages.forEach(function(msg) {
+        //   this.messages.push(msg);
+        // })
+      } else {
+        this.getMessages(sessionId).then(function(res) {
+          _this.messages = res;
+          // console.log(res);
+          // res.forEach(function(msg) {
+          //   this.messages.push(msg);
+          // })
+        })
+      }
+    },
+    setActive(index = -1) {
+      this.activeIndex = index;
+    },
     getMessageBySessionId(id) {
       return this.messagesMap[id];
     },
@@ -49,7 +90,7 @@ export default {
       } else if (activeIndex === sessionIndex) {
         this.activeIndex = -1;
       }
-      this.messagesMap.delete(id);
+      delete this.messagesMap[id];
       return sessionIndex;
     },
     // 添加信息
@@ -88,7 +129,7 @@ export default {
       
     },
     // 分页获取会话列表
-    addSessionList(page = 1) {
+    getSessionList(page = 1) {
       let _this = this;
       axios.get('/chatMain/getSessionList.json', {
         page,
@@ -101,21 +142,30 @@ export default {
         }
       })
     },
+    // 分页获取会话列表
+    getMessages(sessionId) {
+      let promise = new Promise(function(resolve, reject) {
+        axios.get('/chatMain/getMessages.json', {
+          sessionId,
+        })
+        .then(function({ data:{status, result, message} }) {
+          if (status === 1) {
+            resolve(result.content);
+          } else {
+            reject(message);
+          }
+        })
+      })
+      return promise;
+    },
   },
   /**
    * 在渲染该组件的对应路由被 confirm 前调用
-   * ！！！无需修改！！！
-   * ！！！无需修改！！！
-   * ！！！无需修改！！！
    */
   beforeRouteEnter(to, from, next) {
-    // 载入路由对应的 module store 对象
-    rootStore.registerModule(moduleScope, moduleStore);
     next(vm => {
-      vm.$store.dispatch('recordModuleName', moduleScope);
-
       // 开发代码
-      vm.addSessionList();
+      vm.getSessionList();
 
       // dialog.connect({
       //   reconnectionAttempts: 5,
