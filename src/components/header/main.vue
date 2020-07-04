@@ -1,19 +1,19 @@
 <template>
   <header class="page_header">
     <div class="login_register">
-      <a href="/auth/login.html">登录</a>
-      <a href="/auth/register.html">注册</a>
+      <router-link :to="{ name: 'login' }">登录</router-link>
+      <router-link :to="{ name: 'register' }">注册</router-link>
     </div>
     <nav>
       <ul class="clearfix">
         <li>
-          <a href="/">首页</a>
+          <router-link :to="{ name: 'index' }">首页</router-link>
         </li>
         <li>
-          <a href="/account/profile.html">我的</a>
+          <router-link :to="{ name: 'profile' }">我的</router-link>
         </li>
         <li>
-          <a href="/peopleList.html">用户列表</a>
+          <router-link :to="{ name: 'peopleList' }">用户列表</router-link>
         </li>
       </ul>
     </nav>

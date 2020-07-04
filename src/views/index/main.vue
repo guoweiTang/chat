@@ -15,7 +15,7 @@ import { mapState, mapGetters, mapActions } from 'vuex';
 
 import rootStore from '../../store';
 import moduleStore from './store';
-const moduleScope = '/index';
+const moduleScope = 'index';
 let timer = null;
 
 export default {
@@ -36,10 +36,15 @@ export default {
    */
   beforeRouteEnter(to, from, next) {
     // 载入路由对应的 module store 对象
-    rootStore.registerModule(moduleScope, moduleStore);
+    // 由于整个项目仅有这个路由注册了模块store，防止模块重复注册导致错误，以下代码判断方法纯属偏方，不建议正式开发使用
+    let moduleName = Object.keys(rootStore._modules.root._children);
+    if (moduleName.indexOf(moduleScope) === -1) {
+      rootStore.registerModule(moduleScope, moduleStore);
+    }
     next(vm => {
-      vm.$store.dispatch('recordModuleName', moduleScope);
-
+      if (moduleName.indexOf(moduleScope) === -1) {
+        vm.$store.dispatch('recordModuleName', moduleScope);
+      }
       // 开发代码
       vm.add(1);
       let lock = vm.$el.getElementsByClassName('clock')[0];
@@ -48,7 +53,7 @@ export default {
       lock.width = lock.height = canvasW;
       setDirective(ctx, canvasW / 2);
     });
-  }
+  },
 };
 // 绘图
 function setDirective(ctx, w) {
