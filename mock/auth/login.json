@@ -2,6 +2,10 @@
 	"status": 1,
   "message": "success",
   "result": {
-      "url": "/"
+    "userInfo": {
+			"id": "31342468",
+			"headIcon": "/upload-sources/i/headPic-1592274902352-75530.JPG",
+			"nickName": "ice"
+		}
   }
 }

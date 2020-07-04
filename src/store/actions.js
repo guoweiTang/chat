@@ -13,3 +13,9 @@ export const recordModuleName = ({ commit, state }, name) => {
         name
     });
 };
+/**
+ * 获取登录信息
+ */
+export const setLoginInfo = ({ commit }, data) => {
+    commit(types.LOGIN_INFO, data);
+};

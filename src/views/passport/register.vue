@@ -27,7 +27,7 @@
         </label>
         <p class="quick_link">
           已有账号，
-          <a href="/auth/login.html">直接登录</a>
+          <router-link :to="{ name: 'login' }">立即注册</router-link>
         </p>
       </form>
     </validation-observer>

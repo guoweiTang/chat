@@ -1,1 +1,2 @@
 export const RECORD_MODULE_NAME = 'RECORD_MODULE_NAME';
+export const LOGIN_INFO = 'LOGIN_INFO';

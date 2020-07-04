@@ -19,7 +19,7 @@
       <label class="row_full"><input type="submit" value="登录" /></label>
       <p class="quick_link">
         还没账号，
-        <a href="/auth/register.html">立即注册</a>
+        <router-link :to="{ name: 'register' }">立即注册</router-link>
       </p>
     </form>
     </validation-observer>
@@ -29,6 +29,7 @@
 <script>
 import axios from "axios";
 import { extend } from 'vee-validate';
+import { mapActions } from 'vuex';
 // 注册自定义校验规则
 extend('minmax', {
   validate(value, args) {
@@ -53,9 +54,10 @@ export default {
     };
   },
   computed: {
-    // ...mapState(moduleScope, ['liveCount', 'canvasWidth'])
+    // ...mapGetters(['isLogin'])
   },
   methods: {
+    ...mapActions(['setLoginInfo']),
     submit() {
       let  _this= this;
       axios
@@ -65,7 +67,13 @@ export default {
         .then(function({data}) {
           if (data.status === 1) {
             _this.errMsg = '';
-            location.href = data.result.url;
+            _this.setLoginInfo(data.result.userInfo);
+
+            let redirect = _this.$route.query.redirect;
+            _this.$router.push('/peopleList.html');
+            _this.$router.push(redirect || {
+              name: 'index'
+            });
           } else {
             _this.errMsg = data.message;
           }

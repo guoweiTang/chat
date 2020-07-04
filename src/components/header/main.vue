@@ -1,8 +1,14 @@
 <template>
   <header class="page_header">
     <div class="login_register">
+      <template v-if="isLogin">
+      <router-link :to="{ name: 'profile' }">{{userInfo.nickName}}</router-link>
+      <a href="/auth/logout">退出</a>
+      </template>
+      <template v-else>
       <router-link :to="{ name: 'login' }">登录</router-link>
       <router-link :to="{ name: 'register' }">注册</router-link>
+      </template>
     </div>
     <nav>
       <ul class="clearfix">
@@ -21,8 +27,13 @@
 </template>
 
 <script>
+import { mapState, mapGetters } from 'vuex';
 export default {
-  name: "appHeader"
+  name: "appHeader",
+  computed: {
+    ...mapState(['userInfo']),
+    ...mapGetters(['isLogin']),
+  }
 };
 </script>
 <style lang="less" scoped>

@@ -8,21 +8,20 @@
       enctype="multipart/form-data"
     >
       <label class="head_pic">
-        <img id="portraitImage" :src="formData.headPic" alt="头像" width="96" height="96" />
+        <img id="portraitImage" :src="headIcon" alt="头像" width="96" height="96" />
         <input
-          :value="formData.headPic"
           @change="handleUpdatePic($event.target)"
           type="file"
-          name="headPic"
+          name="headIcon"
         />
       </label>
     </form>
     <validation-observer v-slot="{ handleSubmit }">
       <form id="profileForm" @submit.prevent="handleSubmit(submit)">
-        <input type="hidden" name="headPic" :value="formData.headPic" />
+        <input type="hidden" name="headIcon" :value="headIcon" />
         <label class="row_full">
           <validation-provider rules="required|min:3|max:5" v-slot="{ errors }">
-            <input v-model="formData.user" type="text" name="用户名" />
+            <input v-model="nickName" type="text" name="用户名" />
             <span class="error">{{ errors[0] }}</span>
           </validation-provider>
         </label>
@@ -42,18 +41,18 @@
 
 <script>
 import axios from "axios";
+import { mapState } from 'vuex';
 
 export default {
   name: "profile",
   data() {
     return {
-      searchText: "",
-      formData: {
-        user: "",
-        headPic: ""
-      },
-      errMsg: ""
+      nickName: "",
+      headIcon: "",
     };
+  },
+  computed: {
+    ...mapState(['userInfo']),
   },
   methods: {
     getUpdatedPic(target) {
@@ -65,7 +64,7 @@ export default {
       }
       let res = JSON.parse(resultWrapper.text);
       if (res.status === 1) {
-        this.formData.headPic = res.result.picture;
+        this.headIcon = res.result.picture;
       } else {
         alert(res.message);
       }
@@ -76,10 +75,9 @@ export default {
       }
     },
     submit() {
-      let _this = this;
       axios
         .post("/account/uploadProfile.json", {
-          ..._this.formData
+          
         })
         .then(function(data) {
           if (data.status === 1) {
@@ -92,6 +90,13 @@ export default {
           console.log(error);
         });
     }
+  },
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      let {nickName, headIcon} = vm.userInfo;
+      vm.nickName = nickName;
+      vm.headIcon = headIcon;
+    })
   }
 };
 </script>

@@ -18,7 +18,7 @@ module.exports = {
       type: 'post',
       url: '/auth/register.json',
     }, {
-      type: 'get',
+      type: 'post',
       url: '/peopleList/createSession/:id',
       fileName: 'addSession.json',
     }, {
@@ -31,7 +31,7 @@ module.exports = {
       type: 'get',
       url: '/chatMain/getMessages.json',
     }, {
-      type: 'get',
+      type: 'post',
       url: '/chatMain/sendMsg.json',
     }, {
       type: 'get',

@@ -1,3 +1,3 @@
-export const msg = state => {
-    return 'coming ' + state.moduleName
+export const isLogin = state => {
+    return !!state.userInfo.id;
 };

@@ -3,7 +3,7 @@
     <canvas class="clock">Your browser does not support the canvas element.</canvas>
     <p class="developing">敬请期待……</p>
     <pre>
-      msg: {{msg}}
+      isLogin: {{isLogin}}
       helloMsg: {{helloMsg}}
       liveCount: {{liveCount}}
     </pre>
@@ -22,7 +22,7 @@ export default {
   name: 'index',
   computed: {
     ...mapState(moduleScope, ['liveCount', 'canvasWidth']),
-    ...mapGetters(['msg']),
+    ...mapGetters(['isLogin']),
     ...mapGetters(moduleScope, ['helloMsg']),
   },
   methods: {
