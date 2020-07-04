@@ -1,0 +1,17 @@
+{
+	"status": 1,
+	"message": "success",
+	"result": {
+		"content": {
+			"type": "IM_SEND_MESSAGE",
+			"content": {
+				"msgType": 0,
+				"createTime": "2020-07-04T02:56:53.000Z",
+				"sessionId": "31342468-20606237",
+				"senderId": "31342468",
+				"msgId": "1593831413610",
+				"msgContent": "祖国繁荣，民族昌盛！"
+			}
+		}
+	}
+}

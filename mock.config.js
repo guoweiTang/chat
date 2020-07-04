@@ -32,6 +32,9 @@ module.exports = {
       url: '/chatMain/getMessages.json',
     }, {
       type: 'get',
+      url: '/chatMain/sendMsg.json',
+    }, {
+      type: 'get',
       url: '/example',
     },
   ]

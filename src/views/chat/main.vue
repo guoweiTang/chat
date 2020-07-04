@@ -11,6 +11,7 @@
       :activeIndex="activeIndex"
       :sessionList="sessionList"
       :messages="messages"
+      :dialog="dialog"
       @set-active="setActive"
      />
   </div>
@@ -21,10 +22,9 @@ import axios from 'axios';
 import sessionPeople from './components/session-people/main.vue';
 import sessionMessages from './components/session-messages/main.vue';
 import Chat from './components/chat/api';
-const dialog = new Chat();
 
 export default {
-  name: "chatMain",
+  name: 'chatMain',
   components: {
     sessionPeople,
     sessionMessages,
@@ -38,6 +38,7 @@ export default {
       // 所有当前页面已浏览过的消息列表Map{sessionId: []}
       messagesMap: {},
       messages: [],
+      dialog: new Chat(),
     };
   },
   computed: {
@@ -54,7 +55,6 @@ export default {
       let _this = this;
       this.setActive(index);
       let messages = this.getMessageBySessionId(sessionId);
-      console.log(messages)
       if (messages) {
         this.messages = messages;
         // messages.forEach(function(msg) {
@@ -102,7 +102,9 @@ export default {
 
       if (index === undefined) {
         axios.get('/chatMain/getSessionList.json', {
-          sessionId,
+          params: {
+            sessionId,
+          },
         })
         .then(function({data}){
           this.sessionList.unshift(data);
@@ -132,7 +134,9 @@ export default {
     getSessionList(page = 1) {
       let _this = this;
       axios.get('/chatMain/getSessionList.json', {
-        page,
+        params: {
+          page,
+        },
       })
       .then(function({ data:{status, result} }) {
         if (status === 1) {
@@ -146,7 +150,9 @@ export default {
     getMessages(sessionId) {
       let promise = new Promise(function(resolve, reject) {
         axios.get('/chatMain/getMessages.json', {
-          sessionId,
+          params: {
+            sessionId,
+          },
         })
         .then(function({ data:{status, result, message} }) {
           if (status === 1) {
@@ -167,7 +173,7 @@ export default {
       // 开发代码
       vm.getSessionList();
 
-      // dialog.connect({
+      // vm.dialog.connect({
       //   reconnectionAttempts: 5,
       //   query: {
       //       name: 'ice',
@@ -176,16 +182,16 @@ export default {
       //   }
       // });
       //绑定事件
-      dialog.on('connect', function() {
+      vm.dialog.on('connect', function() {
           console.log('connected');
       });
-      dialog.on('disconnect', function() {
+      vm.dialog.on('disconnect', function() {
           console.log('disconnect');
       });
-      dialog.on('reconnect', function() {
+      vm.dialog.on('reconnect', function() {
           console.log('reconnect');
       });
-      dialog.on('message', function(msg) {
+      vm.dialog.on('message', function(msg) {
           console.log('原始消息如下↓');
           console.log(msg);
       });
@@ -195,6 +201,6 @@ export default {
 </script>
 
 <!-- 添加'scoped'属性后样式仅对本组件可用  -->
-<style lang="less" src="./main.less"></style>
+<style lang="less" src="./main.less" scoped></style>
 <style scoped>
 </style>
